@@ -70,6 +70,10 @@ def main():
 			chrome_path="C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
 			webbrowser.register('chrome', None,webbrowser.BackgroundBrowser(chrome_path),1)
 			webbrowser.get('chrome').open_new('youtube.com')
+		if 'open google' in query:
+			chrome_path="C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
+			webbrowser.register('chrome', None,webbrowser.BackgroundBrowser(chrome_path),1)
+			webbrowser.get('chrome').open_new('google.com')
 
 
 
