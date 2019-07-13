@@ -4,6 +4,7 @@ import speech_recognition as sr
 import webbrowser
 import os
 import random
+import sys
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -135,7 +136,7 @@ def main():
 			elif 'shut up' in query or 'take a break' in query:
 				speak('From now on, I will let you focus sir.')
 				listen = False
-			elif 'shutdown' in query or 'exit' in query:
+			elif 'shut down' in query or 'exit' in query:
 				sys.exit()
 			else:
 				speak('Sorry sir. Can you repeat that?')
