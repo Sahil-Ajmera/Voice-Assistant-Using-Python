@@ -12,8 +12,23 @@ def speak(audio):
 	engine.say(audio)
 	engine.runAndWait()
 
-def main():
-	speak("Hi Sir. Jarvis at your service")
+def wishMe():
+	'''
+	Wishes user
+	'''
+	hour = int(datetime.datetime.now().hour)
 
+	if hour>=0 and hour<12:
+		speak("Good Morning sir. Jarvis at your service")
+
+	elif hour>=12 and hour<18:
+		speak("Good Afternoon sir. Jarvis at your service")
+
+	else:
+		speak("Good Evening sir. Jarvis at your service")
+
+def main():
+	wishMe()
+	
 if __name__=="__main__":
 	main()
