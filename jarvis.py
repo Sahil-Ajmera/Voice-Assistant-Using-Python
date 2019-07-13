@@ -2,6 +2,8 @@ import pyttsx3
 import datetime
 import speech_recognition as sr
 import webbrowser
+import os
+import random
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -19,7 +21,7 @@ def takeCommand():
 	r = sr.Recognizer()
 	with sr.Microphone() as source:
 		print("Listening ...")
-		r.pause_threshold = 2
+		r.pause_threshold = 1.5
 		audio = r.listen(source)
 
 	try:
@@ -28,7 +30,7 @@ def takeCommand():
 		print("Query: "+query)
 	except Exception as e:
 		#print(e)
-		speak("Sir I did not get that.")
+		#speak("Sir I did not get that.")
 		return "None"
 	return query
 
@@ -74,7 +76,12 @@ def main():
 			chrome_path="C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
 			webbrowser.register('chrome', None,webbrowser.BackgroundBrowser(chrome_path),1)
 			webbrowser.get('chrome').open_new('google.com')
-
+		if 'music' or 'song' or 'play anything' in query:
+			music_dir = 'C:\\Users\\Sahil Ajmera\\Music'
+			songs = os.listdir(music_dir)
+			songnumber = random.randint(0,len(songs))
+			os.startfile(os.path.join(music_dir,songs[songnumber]))
+		
 
 
 
