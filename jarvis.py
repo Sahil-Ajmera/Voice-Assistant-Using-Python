@@ -12,6 +12,8 @@ def speak(audio):
 	engine.say(audio)
 	engine.runAndWait()
 
+
+
 def wishMe():
 	'''
 	Wishes user
@@ -29,6 +31,9 @@ def wishMe():
 
 def main():
 	wishMe()
-	
+	while True:
+		query = takeCommand().lower()
+
+
 if __name__=="__main__":
 	main()
