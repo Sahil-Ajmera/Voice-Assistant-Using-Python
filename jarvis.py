@@ -136,7 +136,6 @@ def search_wikipedia(query):
 
 def mute():
 	speak('From now on, I will let you focus sir.')
-	listen = False
 
 def shutdown():
 	sys.exit()
@@ -203,6 +202,7 @@ def main():
 				open_cmd()
 			elif 'shut up' in query or 'take a break' in query or 'mute yourself' in query:
 				mute()
+				listen = False
 			elif 'shut down' in query or 'exit' in query:
 				shutdown()
 			elif 'time' in query:
@@ -213,6 +213,8 @@ def main():
 				current_day()
 			elif 'wikipedia' in query or 'who is' in query or 'what is' in query:
 				query = query.replace("wikipedia", "")
+				if len(query) < 0:
+					continue
 				search_wikipedia(query)
 			else:
 				speak('Sorry sir. Can you repeat that?')
