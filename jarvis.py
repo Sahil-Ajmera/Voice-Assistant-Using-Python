@@ -7,6 +7,7 @@ import random
 import sys
 import datetime
 import wikipedia
+import requests, json
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -134,6 +135,23 @@ def search_wikipedia(query):
 	speak("According to Wikipedia")
 	speak(results)
 
+def find_distance_time(query):
+	api_key = 'AIzaSyBJECjJotcBROfX-q2z2p9-SWBvl7pfEEA'
+	source = "Current Location"
+	dest = query
+
+	url ='https://maps.googleapis.com/maps/api/distancematrix/json?'
+
+	r = requests.get(url + 'origins = ' + source +
+                   '&destinations = ' + dest +
+                   '&key = ' + api_key)
+
+	x = r.json()
+
+	print(x['rows']['elements']['distance']['text'])
+
+	print(x['rows']['elements']['duration']['text'])
+	
 def mute():
 	speak('From now on, I will let you focus sir.')
 
@@ -167,7 +185,8 @@ def main():
 		# Open Github
 		# Open gmail
 		# Open linkedin
-		# Search results for google 
+		# Search results for google
+		# Location distance from a place 
 		'''
 
 		if listen != False:
@@ -216,6 +235,11 @@ def main():
 				if len(query) < 0:
 					continue
 				search_wikipedia(query)
+			elif 'How far is' in query:
+				#query = query.replace("How far is","")
+				#query = query.replace("from my place","")
+				#find_distance_time(query)
+				pass
 			else:
 				speak('Sorry sir. Can you repeat that?')
 
